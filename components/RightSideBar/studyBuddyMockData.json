@@ -1,0 +1,58 @@
+
+[{
+    "id": 1,
+    "image": "images/resources/side-friend1.jpg",
+    "name":"friend1",
+    "online": true
+},
+{
+    "id": 2,
+    "image": "images/resources/side-friend2.jpg",
+    "name":"friend2",
+    "online": true
+},{
+    "id": 3,
+    "image": "images/resources/side-friend3.jpg",
+    "name":"friend3",
+    "online": false
+},
+{
+    "id": 4,
+    "image": "images/resources/side-friend4.jpg",
+    "name":"friend4",
+    "online": true
+},{
+    "id": 5,
+    "image": "images/resources/side-friend5.jpg",
+    "name":"friend5",
+    "online": true
+},
+{
+    "id": 6,
+    "image": "images/resources/side-friend6.jpg",
+    "name":"friend6",
+    "online": true
+},
+{
+    "id": 7,
+    "image": "images/resources/side-friend7.jpg",
+    "name":"friend7",
+    "online": true
+},{
+    "id": 8,
+    "image": "images/resources/side-friend8.jpg",
+    "name":"friend8",
+    "online": false
+},
+{
+    "id": 9,
+    "image": "images/resources/side-friend9.jpg",
+    "name":"friend9",
+    "online": true
+},
+{
+    "id": 10,
+    "image": "images/resources/side-friend10.jpg",
+    "name":"friend10",
+    "online": false
+}]
