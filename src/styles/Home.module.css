@@ -1,14 +1,19 @@
 .menu {
-  position: "absolute";
-  display: "flex";
-  flex-direction: "column";
-  align-items: "center";
-  color: "black";
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: black;
+  margin-left: 20%;
+}
+.menuHeader {
+  position: relative;
+  display: flex;
+  color: black;
 }
 
 .menu a {
   color: rgba(0,0,0,.3);
-  text-transform: uppercase;
 }
 
 .menu ul {

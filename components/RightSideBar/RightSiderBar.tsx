@@ -1,9 +1,17 @@
-import React, { useState, useEffect } from "react";
-import mockData from "./studyBuddyMockData.json";
-import { RightSideBarProps } from "./RightSideBar.modal";
+import React, { useState, useEffect, useContext } from "react";
 
-const RightSideBar: React.FunctionComponent<RightSideBarProps> = (props) => {
-  const { isRightBarOpen } = props;
+import { AppContext } from "../Context/AppContext";
+import ZmateStatus from "./ZmateStatus";
+import { studyBuddyData } from "./studyBuddyMockData";
+
+const RightSideBar: React.FunctionComponent = () => {
+  const appContext = useContext(AppContext);
+
+  if (!appContext) {
+    throw new Error("Menu must be used within LayoutContext");
+  }
+  const { isRightBarOpen } = appContext;
+
   const [windowWidth, setWindowWidth] = useState(0);
   useEffect(() => {
     updateDimensions();
@@ -44,30 +52,8 @@ const RightSideBar: React.FunctionComponent<RightSideBarProps> = (props) => {
               flexDirection: "column",
             }}
           >
-            {mockData.map((data) => (
-              <li key={data.id}>
-                <div
-                  style={{
-                    display: "inline-block",
-                    position: "relative",
-                    width: "50px",
-                    height: "50px",
-                  }}
-                >
-                  <img
-                    style={{
-                      height: "auto",
-                      maxWidth: "100%",
-                      borderRadius: "100%",
-                      overflowClipMargin: "content-box",
-                      overflow: "clip",
-                    }}
-                    src={data.image}
-                    alt=""
-                  />
-                  <span className="status f-online"></span>
-                </div>
-              </li>
+            {studyBuddyData.map((data) => (
+              <ZmateStatus key={data.id} zMate={data} />
             ))}
           </ul>
         ) : null}

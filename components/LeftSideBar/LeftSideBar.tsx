@@ -1,11 +1,17 @@
-import React, { useState, useEffect } from "react";
-import { BiMenu } from "react-icons/bi";
+import React, { useState, useEffect, useContext } from "react";
+import { BiBell, BiHomeAlt2, BiChat, BiCog } from "react-icons/bi";
 import { MdOutlineRssFeed } from "react-icons/md";
-import { LeftSideBarProps } from "./LeftSideBar.modal";
 import Menu from "./Menu";
+import { AppContext } from "../Context/AppContext";
 
-const LeftSideBar: React.FunctionComponent<LeftSideBarProps> = (props) => {
-  const { isLeftBarOpen } = props;
+const LeftSideBar: React.FunctionComponent = () => {
+  const appContext = useContext(AppContext);
+
+  if (!appContext) {
+    throw new Error("Menu must be used within LayoutContext");
+  }
+
+  const { isLeftBarOpen, toggleLeftBar } = appContext;
   const [windowWidth, setWindowWidth] = useState(0);
 
   useEffect(() => {
@@ -26,10 +32,11 @@ const LeftSideBar: React.FunctionComponent<LeftSideBarProps> = (props) => {
     transition: "0.3s",
     overflowX: "hidden",
     boxShadow: "0 0 34px 0 rgba(63, 66, 87, 0.1)",
-    paddingTop: "50px",
+    paddingTop: windowWidth > 600 ? "50px" : "25px",
+    zIndex: "2",
   };
 
-  const menuItems = [
+  const menuLinks = [
     {
       text: "Home Pages",
       link: "#mm-2",
@@ -45,42 +52,77 @@ const LeftSideBar: React.FunctionComponent<LeftSideBarProps> = (props) => {
   ];
 
   return (
-    <div style={sidebarStyle}>
-      {windowWidth > 600 ? (
-        <ul
+    <>
+      <div style={sidebarStyle}>
+        {windowWidth > 600 ? (
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <BiHomeAlt2
+              style={{
+                color: "black",
+                width: "30px",
+                height: "30px",
+                marginBottom: "30px",
+              }}
+            />
+            <MdOutlineRssFeed
+              style={{
+                color: "black",
+                width: "30px",
+                height: "30px",
+                marginBottom: "30px",
+              }}
+            />
+
+            <BiBell
+              style={{
+                color: "black",
+                width: "30px",
+                height: "30px",
+                marginBottom: "30px",
+              }}
+            />
+            <BiChat
+              style={{
+                color: "black",
+                width: "30px",
+                height: "30px",
+                marginBottom: "30px",
+              }}
+            />
+            <BiCog
+              style={{
+                color: "black",
+                width: "30px",
+                height: "30px",
+                marginBottom: "30px",
+              }}
+            />
+          </div>
+        ) : (
+          <Menu menuLinks={menuLinks} />
+        )}
+      </div>
+      {isLeftBarOpen && windowWidth < 600 ? (
+        <div
+          onClick={toggleLeftBar}
           style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
+            position: "fixed",
+            width: "100%",
+            height: "100%",
+            background: "#4C6370",
+            opacity: "0.5",
+            zIndex: "1",
           }}
-        >
-          <BiMenu
-            style={{
-              color: "black",
-              width: "30px",
-              height: "30px",
-              marginBottom: "30px",
-            }}
-          />
-
-          <MdOutlineRssFeed
-            style={{
-              color: "black",
-              width: "30px",
-              height: "30px",
-              marginBottom: "30px",
-            }}
-          />
-
-          <li style={{ marginBottom: "30px" }}>Link 3</li>
-          <li style={{ marginBottom: "30px" }}>Link 4</li>
-          <li style={{ marginBottom: "30px" }}>Link 5</li>
-        </ul>
-      ) : (
-        <Menu menuItems={menuItems} />
-      )}
-    </div>
+        />
+      ) : null}
+    </>
   );
 };
 

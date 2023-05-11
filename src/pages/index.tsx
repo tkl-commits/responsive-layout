@@ -5,29 +5,9 @@ import MainLayout from "../../components/MainLayOut/MainLayout";
 import RightSideBar from "../../components/RightSideBar/RightSiderBar";
 import TopBar from "../../components/TopBar/TopBar";
 import Section from "../../components/Section/Section";
+import { AppProvider } from "../../components/Context/AppContext";
 
 export default function Home() {
-  const [isLeftBarOpen, setLeftBarOpen] = useState(false);
-  const [isRightBarOpen, setRightBarOpen] = useState(false);
-
-  const toggleLeftBar = () => {
-    if (!isRightBarOpen) {
-      setLeftBarOpen(!isLeftBarOpen);
-    } else {
-      setRightBarOpen(false);
-      setLeftBarOpen(true);
-    }
-  };
-
-  const toggleRightBar = () => {
-    if (!isLeftBarOpen) {
-      setRightBarOpen(!isRightBarOpen);
-    } else {
-      setLeftBarOpen(false);
-      setRightBarOpen(true);
-    }
-  };
-
   return (
     <>
       <Head>
@@ -36,12 +16,14 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <MainLayout>
-        <TopBar toggleLeftBar={toggleLeftBar} toggleRightBar={toggleRightBar} />
-        <LeftSideBar isLeftBarOpen={isLeftBarOpen} />
-        <Section />
-        <RightSideBar isRightBarOpen={isRightBarOpen} />
-      </MainLayout>
+      <AppProvider>
+        <MainLayout>
+          <TopBar />
+          <LeftSideBar />
+          <Section />
+          <RightSideBar />
+        </MainLayout>
+      </AppProvider>
     </>
   );
 }
