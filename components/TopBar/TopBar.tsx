@@ -55,7 +55,7 @@ const TopBar: React.FunctionComponent = () => {
         >
           <div className="logo">
             <a title="" href="#">
-              <img src="images/logo" alt="ZyearBook" />
+              <img src="images/logo" alt="Logo" />
             </a>
           </div>
           <input

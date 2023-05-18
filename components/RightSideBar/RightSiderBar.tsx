@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 
 import { AppContext } from "../Context/AppContext";
-import ZmateStatus from "./ZmateStatus";
-import { studyBuddyData } from "./studyBuddyMockData";
+import FriendStatus from "./FriendStatus";
+import { friendsMockData } from "./friendsMockData";
 
 const RightSideBar: React.FunctionComponent = () => {
   const appContext = useContext(AppContext);
@@ -52,8 +52,8 @@ const RightSideBar: React.FunctionComponent = () => {
               flexDirection: "column",
             }}
           >
-            {studyBuddyData.map((data) => (
-              <ZmateStatus key={data.id} zMate={data} />
+            {friendsMockData.map((data) => (
+              <FriendStatus key={data.id} friend={data} />
             ))}
           </ul>
         ) : null}
